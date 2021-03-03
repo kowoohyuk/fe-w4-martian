@@ -1,0 +1,25 @@
+{
+  "name": "fe-w4-martian",
+  "version": "1.0.0",
+  "description": "![](https://images.theconversation.com/files/96726/original/image-20150930-19533-1by0fu3.jpg?ixlib=rb-1.1.0&rect=0%2C0%2C2000%2C970&q=45&auto=format&w=1356&h=668&fit=crop)",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kowoohyuk/fe-w4-martian.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kowoohyuk/fe-w4-martian/issues"
+  },
+  "homepage": "https://github.com/kowoohyuk/fe-w4-martian#readme",
+  "dependencies": {
+    "parcel": "^1.12.4"
+  },
+  "devDependencies": {
+    "sass": "^1.32.8"
+  }
+}
