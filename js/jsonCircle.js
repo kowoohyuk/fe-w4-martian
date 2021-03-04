@@ -1,53 +1,52 @@
-class Circle {
-  constructor(target = null, lineCount = 0, width = '300', height = '300', backgroundColor = '#ffcc00', fontColor = '#fff', lineWidth = '1', lineColor = '#000', texts = [], arrow = false) {
+const Circle = function(target = null, lineCount = 0, width = '300', height = '300', backgroundColor = '#ffcc00', fontColor = '#fff', lineWidth = '1', lineColor = '#000', texts = [], arrow = false) {
+  this.target = target;
+  this.lineCount = lineCount;
+  this.width = width;
+  this.height = height;
+  this.backgroundColor = backgroundColor;
+  this.fontColor = fontColor;
+  this.lineWidth = lineWidth;
+  this.lineColor = lineColor;
+  this.texts = texts;
+  this.arrow = arrow;
+  this.circle = null;
+  this.prefix = 'json-circle';
+  this.setTarget = (target) => {
     this.target = target;
-    this.lineCount = lineCount;
-    this.width = width;
-    this.height = height;
-    this.backgroundColor = backgroundColor;
-    this.fontColor = fontColor;
-    this.lineWidth = lineWidth;
-    this.lineColor = lineColor;
-    this.texts = texts;
-    this.arrow = arrow;
-    this.circle = null;
   }
-  setTarget(target) {
-    this.target = target;
-  }
-  setLineCount(lineCount) {
+  this.setLineCount = (lineCount) => {
     this.lineCount = lineCount;
   }
-  setWidth(width) {
+  this.setWidth = (width) => {
     this.width = width;
   }
-  setHeight(height) {
+  this.setHeight = (height) => {
     this.height = height;
   }
-  setBackgroundColor(backgroundColor) {
+  this.setBackgroundColor = (backgroundColor) => {
     this.backgroundColor = backgroundColor;
   }
-  setFontColor(fontColor) {
+  this.setFontColor = (fontColor) => {
     this.fontColor = fontColor;
   }
-  setLineWidth(lineWidth) {
+  this.setLineWidth = (lineWidth) => {
     this.lineWidth = lineWidth;
   }
-  setLineColor(lineColor) {
+  this.setLineColor = (lineColor) => {
     this.lineColor = lineColor;
   }
-  setTexts(texts) {
+  this.setTexts = (texts) => {
     this.texts = texts;
   }
-  setArrow(bool) {
+  this.setArrow = (bool) => {
     this.arrow = bool;
   }
-  init() {
+  this.init = () => {
     if(this.checkValue()) {
       this.render();
     }
   }
-  render() {
+  this.render = () => {
     if(this.checkValue()) {
       this.circleRender();
       this.pieRender();
@@ -56,10 +55,10 @@ class Circle {
       this.arrowRender();
     }
   }
-  circleRender() {
+  this.circleRender = () => {
     if(this.checkValue()) {
       const circle = document.createElement('div');
-      circle.classList.add('json-circle');
+      circle.classList.add(this.prefix);
       circle.style.width = `${this.width}px`;
       circle.style.height = `${this.height}px`;
       circle.style.backgroundColor = this.backgroundColor;
@@ -67,45 +66,45 @@ class Circle {
       this.target.appendChild(circle);
     }
   }
-  pieRender() {
+  this.pieRender = () => {
     if(this.lineCount) {
       const deg = 360 / this.lineCount;
       for(let i = 0; i < this.lineCount; i++) {
         const pie = document.createElement('div');
-        pie.classList.add('json-circle__pie');
+        pie.classList.add(`${this.prefix}__pie`);
         pie.appendChild(this.lineRender(i, deg));
         this.circle.appendChild(pie);
       }
     }
   }
-  lineRender(i, deg) {
+  this.lineRender = (i, deg) => {
     const line = document.createElement('div');
-    line.classList.add('json-circle__pie__line');
+    line.classList.add(`${this.prefix}__pie__line`);
     line.style.transform = `rotate(${deg * i}deg)`;
     line.style.borderWidth = `${this.lineWidth}px`;
     line.style.borderColor = `${this.lineColor}`;
     line.appendChild(this.textsRender(i, deg, line));
     return line;
   }
-  textsRender(i, deg, target) {
+  this.textsRender = (i, deg, target) => {
     const {x , y} = target.getBoundingClientRect();
     const text = document.createElement('span');
-    text.classList.add('json-circle__pie__text');
+    text.classList.add(`${this.prefix}__pie__text`);
     text.style.transform = `rotate(${-deg * i - 113}deg)`;
     text.style.color = this.fontColor;
     text.style.marginTop = `${this.height / this.lineCount - this.lineWidth * 2}px`; 
     text.textContent = this.texts[i];
     return text;
   }
-  arrowRender() {
+  this.arrowRender = () => {
     const arrowWrap = document.createElement('div');
     const arrow = document.createElement('div');
-    arrowWrap.classList.add('json-circle__arrow-wrap');
-    arrow.classList.add('json-circle__arrow');
+    arrowWrap.classList.add(`${this.prefix}__arrow-wrap`);
+    arrow.classList.add(`${this.prefix}__arrow`);
     arrowWrap.appendChild(arrow);
     this.circle.appendChild(arrowWrap);
   }
-  checkValue() {
+  this.checkValue = () => {
     let result = true;
     if(!this.target) {
       console.log('타겟 태그 미지정');
@@ -117,6 +116,6 @@ class Circle {
     }
     return result;
   }
-}
+};
 
 export { Circle }
